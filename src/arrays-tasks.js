@@ -290,8 +290,11 @@ function createNDimensionalArray(/* n, size */) {
  *    flattenArray(['a', ['b', ['c', 'd'], 'e'], 'f']) => ['a', 'b', 'c', 'd', 'e', 'f']
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
-function flattenArray(/* nestedArray */) {
-  throw new Error('Not implemented');
+function flattenArray(nestedArray) {
+  if (nestedArray.some((elem) => Array.isArray(elem))) {
+    return flattenArray(nestedArray.flat());
+  }
+  return nestedArray;
 }
 
 /**
